@@ -103,6 +103,7 @@ function copyIfExist(fd) {
 
 const {Console} = require('console');
 const logger = new Console(
+    //createWriteStream est ouvert tout le long du programme
     fs.createWriteStream("./stdout.log"),
     fs.createWriteStream("./stderr.log")
 );
