@@ -19,7 +19,7 @@ console.log(path);
  * 
  */
 
-const myPath='/dwaps/coco/java.php';
+const myPath = '/dwaps/coco/java.php';
 
 // print path only
 console.log(path.dirname(myPath))
@@ -31,7 +31,7 @@ console.log(path.extname(myPath));
 console.log(path.sep);
 
 //create a path with correct separator
-console.log(path.join('dwaps','coco','pedro.php'))
+console.log(path.join('dwaps', 'coco', 'pedro.php'))
 
 // relative dir
 console.log(path.resolve())
@@ -46,7 +46,7 @@ console.log(path.resolve())
 
 const url = "https://perdu.com/ghkl?eval=java&lab=php&eval^json#lab1"
 
-const myUrl=new URL(url);
+const myUrl = new URL(url);
 
 
 console.log(myUrl.protocol);// https:
@@ -59,3 +59,39 @@ console.log(myUrl.toString());
 console.log(String(myUrl));
 
 //...
+
+/**
+ * Module FS
+ * 
+ */
+
+const fs = require("fs");
+
+fs.readFile(__filename, (err, data) => {
+    if (err) return console.error(err);
+    //console.log(String(data)); //affiche le buffer
+});
+
+fs.readFile(__filename, (err, data) => {
+    if (err) return console.error(err);
+    //convertir le buffer (data) en string est seulement utile en local
+    //console.log(String(data)); //affiche le fichier
+});
+
+/** exercice
+ * Écrire un programme qui copie un fichier si il existe dans un nouveau fichier
+ */
+
+function copyIfExist(fd) {
+    fs.readFile(fd, (err, data) => {
+        if (err) return console.error(err);
+        //convertir le buffer (data) en string est seulement utile en local
+        fs.writeFile(`${fd}-copie`, data, (err,) => {
+            if (err) return console.error(err);
+        });
+    });
+}
+
+copyIfExist(path.join(path.resolve(), "testFile.txt"));
+//you can also use fs.copyFile(file) but you have to do the verification that file exist before it 
+//note that copyFile is faster
