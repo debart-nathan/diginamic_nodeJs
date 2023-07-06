@@ -58,10 +58,10 @@ puis écrivez votre script.
 
 ### include in project
 
-ajouter le path du binaire directement la section "bin" de "/package.json" 
+ajouter le path du binaire directement la section "bin" de "/package.json"
 le nom de l'executable seras alors le nom du projets
 
-on peut aussi ajouter plusieurs script dans le même projet en passant par des "alias" que on utiliseras come cléf 
+on peut aussi ajouter plusieurs script dans le même projet en passant par des "alias" que on utiliseras come cléf
 
 ### include in another project
 
