@@ -49,7 +49,7 @@ ajouter la commande voulue avec un "alias" dans la section "scripts" de "/packag
 les commande de cycle de vie n'ont pas besoin de run.
 les bin des dependency local peuvent être accédé directement par les scripts
 
-## nodejs script
+## nodejs script binary
 
 ## files
 
@@ -69,4 +69,4 @@ you can create multiple local project
 `npm i pathToOtherProject`
 (une copie du projet seras créer)
 
-on a ainsi accès a touts les script.js et dépendance du projets lié
+on a ainsi accès a touts les script_binary.js et dépendance du projets lié
