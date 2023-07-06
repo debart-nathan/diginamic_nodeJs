@@ -101,7 +101,7 @@ function copyIfExist(fd) {
  * redirecting the log
  */
 
-const {Console} = require('console');
+const { Console } = require('console');
 const logger = new Console(
     //createWriteStream est ouvert tout le long du programme
     fs.createWriteStream("./stdout.log"),
@@ -112,3 +112,103 @@ logger.log('Salut les amis');
 logger.error('Oups !');
 
 
+/**
+ * Events
+ * 
+ */
+
+
+//event peut être utilisé 
+//pour déclenché des appel
+//pour réagir a des événement system
+//pour géré les entré sortie entre application et module nodes
+
+
+//class généralement nommé EventEmitter
+const EventEmitter = require('events');
+const emitter = new EventEmitter();
+
+//custom event but no listener
+emitter.emit('FILE_OPENED');
+
+//listener
+emitter.on('FILE_OPENED', () => {
+    console.log("le fichier a bien été ouvert")
+});
+
+//event that is listened on so it is handled
+emitter.emit('FILE_OPENED');
+
+//on peu avoir plus de 1 listener
+emitter.on('FILE_OPENED', () => {
+    console.log("le fichier a bien déjà été ouvert")
+});
+
+emitter.emit('FILE_OPENED');
+
+//once est un listener qui ne peut être utiliser qu'une fois
+emitter.once('FILE_OPENED', () => {
+    console.log("le fichier a bien déjà été ouvert")
+});
+
+emitter.emit('FILE_OPENED')
+emitter.emit('FILE_OPENED')
+
+//creation of our own class EventEmitter
+
+class EventEmitter2 {
+    constructor() {
+        this.eventList = [];
+    }
+    on(event, handler) {
+        const eventListenerList = this.eventList[event]
+        if (typeof eventListenerList != "undefined") {
+            this.eventList[event].push({ type: "on", handler: handler })
+        } else {
+            this.eventList[event] = [{ type: "on", handler: handler }]
+        }
+    }
+    once(event, handler) {
+        const eventListenerList = this.eventList[event]
+        if (typeof eventListenerList != "undefined") {
+            this.eventList[event].push({ type: "once", handler: handler })
+        } else {
+            this.eventList[event] = [{ type: "once", handler: handler }]
+        }
+    }
+
+    emit(event) {
+        const eventListenerList = this.eventList[event]
+        if (typeof eventListenerList != "undefined") {
+            eventListenerList.forEach((handler, index, object) => {
+                handler.handler();
+                if (handler.type == "once") {
+                    object.splice(index, 1);
+                }
+            });
+        }
+    }
+
+}
+
+const emitter2 = new EventEmitter2
+
+console.log(`first event2`);
+emitter2.emit('FILE_OPENED2');
+
+emitter2.on('FILE_OPENED2', () => {
+    console.log("le fichier a bien été ouvert 2")
+});
+
+console.log(`second event2`);
+emitter2.emit('FILE_OPENED2');
+
+emitter2.once('FILE_OPENED2', () => {
+    console.log("le fichier a bien déjà été ouvert 2")
+});
+
+console.log(`third event2`);
+emitter2.emit('FILE_OPENED2');
+
+console.log(`fourth event2`);
+emitter2.emit('FILE_OPENED2');
