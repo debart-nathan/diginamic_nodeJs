@@ -168,6 +168,7 @@ class EventEmitter2 {
             this.eventList[event] = [{ type: "on", handler: handler }]
         }
     }
+
     once(event, handler) {
         const eventListenerList = this.eventList[event]
         if (typeof eventListenerList != "undefined") {
