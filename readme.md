@@ -12,7 +12,6 @@ reconnaissable par les fichiers  "/package-lock.json" "/package.json"
 
 ## Dep
 
-
 ### install local dep
 
 `npm install dep`
@@ -35,17 +34,28 @@ les version dernièrement installer sont dans "/package-lock.json"
 
 ### create script
 
-add the comands wanted under an "alias" dans las section "scripts" de "/package.json"
+ajouter la commande voulue avec un "alias" dans la section "scripts" de "/package.json"
 
-### launch script
+### launch npm script
 
 `npm run alias`
 
-### launch script with args
+### launch nmp script with args
 
 `npm run alias -- arg1 arg2 ...`
 
-### note: script
+### note: npm script
 
 les commande de cycle de vie n'ont pas besoin de run.
 les bin des dependency local peuvent être accédé directement par les scripts
+
+## nodejs script
+
+## files
+
+créer un .js qui commence par `#!/usr/bin/env node`
+puis écrivez votre script.
+
+## include in project
+
+ajouter le binaire dans la section "bin" de "/package.json"
