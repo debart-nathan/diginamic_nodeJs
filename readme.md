@@ -51,22 +51,22 @@ les bin des dependency local peuvent être accédé directement par les scripts
 
 ## nodejs script binary
 
-## files
+### files
 
 créer un .js qui commence par `#!/usr/bin/env node`
 puis écrivez votre script.
 
 ### include in project
 
-ajouter le binaire dans la section "bin" de "/package.json"
+ajouter le path du binaire directement la section "bin" de "/package.json" 
+le nom de l'executable seras alors le nom du projets
 
-## multiple local project
+on peut aussi ajouter plusieurs script dans le même projet en passant par des "alias" que on utiliseras come cléf 
 
-you can create multiple local project
+### include in another project
 
-### add local project in another
+dans l'autre projet
+`npm i PathProjetWithScript`
+(une copie du projet original seras créer)
 
-`npm i pathToOtherProject`
-(une copie du projet seras créer)
-
-on a ainsi accès a touts les script_binary.js et dépendance du projets lié
+on peu ici y accéder via les bin
