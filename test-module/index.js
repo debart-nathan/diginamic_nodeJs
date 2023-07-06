@@ -92,6 +92,22 @@ function copyIfExist(fd) {
     });
 }
 
-copyIfExist(path.join(path.resolve(), "testFile.txt"));
 //you can also use fs.copyFile(file) but you have to do the verification that file exist before it 
 //note that copyFile is faster
+
+
+
+/** exercice
+ * redirecting the log
+ */
+
+const {Console} = require('console');
+const logger = new Console(
+    fs.createWriteStream("./stdout.log"),
+    fs.createWriteStream("./stderr.log")
+);
+
+logger.log('Salut les amis');
+logger.error('Oups !');
+
+
