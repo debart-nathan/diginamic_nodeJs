@@ -39,3 +39,23 @@ console.log(path.resolve())
 // ...
 
 
+/**
+ * URL
+ * 
+ */
+
+const url = "https://perdu.com/ghkl?eval=java&lab=php&eval^json#lab1"
+
+const myUrl=new URL(url);
+
+
+console.log(myUrl.protocol);// https:
+console.log(myUrl.pathname);// ghjkl
+console.log(myUrl.hash);// #lab1
+
+console.log(myUrl.searchParams);// return map object {key => value}
+
+console.log(myUrl.toString());
+console.log(String(myUrl));
+
+//...
