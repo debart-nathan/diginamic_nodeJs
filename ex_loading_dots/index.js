@@ -8,7 +8,7 @@ const emitter = new EventEmitter
 let param;
 
 
-emitter.on("load", () => {
+emitter.on("loadingStart", () => {
     loading(param.dotNumber, param.dotInterval);
 });
 
@@ -32,5 +32,5 @@ async function loading(nbPoint, timePoint) {
 fs.readFile(path.resolve() + path.sep + "time.json", async (err, data) => {
     if (err) return console.error(err);
     param = JSON.parse(String(data))
-    emitter.emit("load")
+    emitter.emit("loadindStart")
 });
