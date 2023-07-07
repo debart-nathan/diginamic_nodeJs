@@ -161,30 +161,22 @@ class EventEmitter2 {
         this.eventList = [];
     }
     on(event, handler) {
-        const eventListenerList = this.eventList[event]
-        if (typeof eventListenerList != "undefined") {
-            this.eventList[event].push({ type: "on", handler: handler })
-        } else {
-            this.eventList[event] = [{ type: "on", handler: handler }]
-        }
+        this.eventList[event] = this.eventList[event] || []
+        this.eventList[event].push({ type: "on", handler: handler })
     }
 
     once(event, handler) {
-        const eventListenerList = this.eventList[event]
-        if (typeof eventListenerList != "undefined") {
-            this.eventList[event].push({ type: "once", handler: handler })
-        } else {
-            this.eventList[event] = [{ type: "once", handler: handler }]
-        }
+        this.eventList[event] = this.eventList[event] || []
+        this.eventList[event].push({ type: "once", handler: handler })
     }
 
     emit(event) {
         const eventListenerList = this.eventList[event]
         if (typeof eventListenerList != "undefined") {
-            eventListenerList.forEach((handler, index, object) => {
+            eventListenerList.forEach((handler, index) => {
                 handler.handler();
                 if (handler.type == "once") {
-                    object.splice(index, 1);
+                    eventListenerList.splice(index, 1);
                 }
             });
         }
