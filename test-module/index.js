@@ -69,7 +69,7 @@ const fs = require("fs");
 
 fs.readFile(__filename, (err, data) => {
     if (err) return console.error(err);
-    //console.log(String(data)); //affiche le buffer
+    //console.log(data); //affiche le buffer
 });
 
 fs.readFile(__filename, (err, data) => {
