@@ -16,21 +16,26 @@ emitter.on("addDot", () => {
     process.stdout.write(".")
 })
 
-async function load(ms) {
-    return new Promise(res => setTimeout(res, ms))
-}
+emitter.on("loadingEnd", (interval) => {
+    clearInterval(interval);
+    emitter.removeAllListeners();
+    process.exit(0)
+})
 
 
-async function loading(nbPoint, timePoint) {
-    for (let i = 0; i < nbPoint; i++) {
-        await load(timePoint)
+function loading(nbPoint, timePoint) {
+    let iter = 0;
+    const load = setInterval(function (){
         emitter.emit("addDot");
-    }
+        if (++iter == nbPoint) {
+            emitter.emit("loadingEnd",load);
+        }
+    }, timePoint);
 }
 
 
 fs.readFile(path.resolve() + path.sep + "time.json", async (err, data) => {
     if (err) return console.error(err);
     param = JSON.parse(String(data))
-    emitter.emit("loadindStart")
+    emitter.emit("loadingStart")
 });
