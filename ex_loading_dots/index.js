@@ -1,15 +1,15 @@
 const EventEmitter = require('events');
-const fs = require("fs");
-const path = require('path');
+
 
 
 
 const emitter = new EventEmitter
 let param;
+const {dotNumber=3, dotInterval=100} = require("./config.json")
 
 
 emitter.on("loadingStart", () => {
-    loading(param.dotNumber, param.dotInterval);
+    loading(dotNumber, dotInterval);
 });
 
 emitter.on("addDot", () => {
@@ -34,8 +34,5 @@ function loading(nbPoint, timePoint) {
 }
 
 
-fs.readFile(path.resolve() + path.sep + "time.json", async (err, data) => {
-    if (err) return console.error(err);
-    param = JSON.parse(String(data))
-    emitter.emit("loadingStart")
-});
+
+emitter.emit("loadingStart")
