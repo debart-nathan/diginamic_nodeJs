@@ -10,8 +10,13 @@ function test(){
 
 
 //on peut partager des elements avec d'autre fichier avec "module.exports{...}"
-module.exports={
-    test,
-    c
+exports.test = test;
+exports.c = c;
 
-}
+/**
+ *  [!] exports est un alias de module.exports
+ *      exports = x
+ *      et module.exports = x
+ *      écrase ce lien et seul la valeur de module.exports compte.
+ *      il faut donc faire attention a leurs utilisation.
+ */

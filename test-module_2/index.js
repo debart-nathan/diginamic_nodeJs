@@ -42,3 +42,9 @@ const extModule =require("./module");//Je suis dans module.js
 
 console.log(extModule.c);//salut je vient du module.js
 extModule.test()//salut je suis une fonction de module.js
+
+const ExtModule2= require("./Module2")
+
+const extModule2= new ExtModule2(1)
+
+extModule2.talk();
