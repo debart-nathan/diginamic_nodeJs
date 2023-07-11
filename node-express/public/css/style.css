@@ -1,0 +1,12 @@
+body {
+  font-family: sans-serif;
+}
+
+.todo.urgent {
+  color: darkred;
+  font-weight: bold;
+}
+
+.todo.priori {
+  color: red;
+}
